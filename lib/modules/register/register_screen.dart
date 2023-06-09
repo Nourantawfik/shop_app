@@ -55,160 +55,156 @@ class RegisterScreen extends StatelessWidget {
             backgroundColor: Colors.white,
             appBar: AppBar(),
 
-            body: Padding(
-              padding: const EdgeInsets.all(20.0),
+            body: Center(
               child: SingleChildScrollView(
-
-                child: Container(
-                  width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
                   child: Form(
                     key: formkey,
-                    child: Container(
-                      height: 700,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Register' ,style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: 18
-                          ),) ,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Register' ,style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            fontSize: 18
+                        ),) ,
 
-                          SizedBox(height: 10,),
+                        SizedBox(height: 10,),
 
-                          Text("Register now to browse our hot offers",style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.grey),) ,
+                        Text("Register now to browse our hot offers",style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.grey),) ,
 
-                          SizedBox(height: 20,),
+                        SizedBox(height: 20,),
 
-                          TextFormField(
-                            keyboardType: TextInputType.name ,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.person),
-                              hintText: "Name" ,
-                              labelText: " Your Name" ,
-                            ),
-                            controller: nameController,
-                            validator: (value) {
-                              if (value!.isEmpty)
-                              {
-                                return "name must not be empty" ;
-                              }
-
-                            },
+                        TextFormField(
+                          keyboardType: TextInputType.name ,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.person),
+                            hintText: "Name" ,
+                            labelText: " Your Name" ,
                           ),
-                          SizedBox(height: 20,),
+                          controller: nameController,
+                          validator: (value) {
+                            if (value!.isEmpty)
+                            {
+                              return "name must not be empty" ;
+                            }
+
+                          },
+                        ),
+                        SizedBox(height: 20,),
 
 
-                          TextFormField(
-                            keyboardType: TextInputType.emailAddress ,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.email),
-                              hintText: "Email" ,
-                              labelText: " Your Email" ,
-                            ),
-                            controller: emailController,
-                            validator: (value) {
-                              if (value!.isEmpty)
-                              {
-                                return "email must not be empty" ;
-                              }
-
-                            },
+                        TextFormField(
+                          keyboardType: TextInputType.emailAddress ,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.email),
+                            hintText: "Email" ,
+                            labelText: " Your Email" ,
                           ),
-                          SizedBox(height: 20,),
-                          TextFormField(
-                            keyboardType: TextInputType.visiblePassword ,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.lock),
+                          controller: emailController,
+                          validator: (value) {
+                            if (value!.isEmpty)
+                            {
+                              return "email must not be empty" ;
+                            }
 
-                              suffixIcon: IconButton(
-                                  onPressed:() {
-                                    cubit.ChangePasswordIcon() ;
+                          },
+                        ),
+                        SizedBox(height: 20,),
+                        TextFormField(
+                          keyboardType: TextInputType.visiblePassword ,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.lock),
 
-                                  } , icon : Icon(cubit.suffix)),
+                            suffixIcon: IconButton(
+                                onPressed:() {
+                                  cubit.ChangePasswordIcon() ;
 
-                              hintText: "Password" ,
-                              labelText: " Your Password" ,
-                            ),
-                            validator: (value){
-                              if (value!.isEmpty )
-                              {
-                                return " password must not be empty" ;
-                              }
-                            },
-                            obscureText: cubit.isVisible! ,
-                            controller: passwordController,
+                                } , icon : Icon(cubit.suffix)),
+
+                            hintText: "Password" ,
+                            labelText: " Your Password" ,
                           ),
-                          SizedBox(height: 20,),
+                          validator: (value){
+                            if (value!.isEmpty )
+                            {
+                              return " password must not be empty" ;
+                            }
+                          },
+                          obscureText: cubit.isVisible! ,
+                          controller: passwordController,
+                        ),
+                        SizedBox(height: 20,),
 
-                          TextFormField(
-                            keyboardType: TextInputType.phone ,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.phone),
-                              hintText: "Phone" ,
-                              labelText: " Your Phone" ,
-                            ),
-                            controller: phoneController,
-                            validator: (value) {
-                              if (value!.isEmpty)
-                              {
-                                return "Phone must not be empty" ;
-                              }
-
-                            },
+                        TextFormField(
+                          keyboardType: TextInputType.phone ,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.phone),
+                            hintText: "Phone" ,
+                            labelText: " Your Phone" ,
                           ),
-                          SizedBox(height: 25,),
+                          controller: phoneController,
+                          validator: (value) {
+                            if (value!.isEmpty)
+                            {
+                              return "Phone must not be empty" ;
+                            }
 
-                          Container(
-                            color: Colors.blue,
-                            child: Center(
-                              child: ConditionalBuilder(
-                                condition:  state is! ShopLoadingRegisterState,
-                                builder: (BuildContext context) =>
-                                    MaterialButton(onPressed: () {
-                                      if (formkey.currentState!.validate())
-                                      {
-                                        RegisterCubit.get(context).userRegister(
+                          },
+                        ),
+                        SizedBox(height: 25,),
 
-                                            name: nameController.text, email: emailController.text,
-                                            password: passwordController.text, phone: phoneController.text) ;
+                        Container(
+                          color: Colors.blue,
+                          child: Center(
+                            child: ConditionalBuilder(
+                              condition:  state is! ShopLoadingRegisterState,
+                              builder: (BuildContext context) =>
+                                  MaterialButton(onPressed: () {
+                                    if (formkey.currentState!.validate())
+                                    {
+                                      RegisterCubit.get(context).userRegister(
 
-                                        NavigteAndFinish(context , ShopLayOutScreen());
-                                      }
-                                    } ,
-                                      child: Text('Register', style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                                        color: Colors.white
-                                    ),),),
-                                fallback: (BuildContext context) => Center(child: CircularProgressIndicator()),
+                                          name: nameController.text, email: emailController.text,
+                                          password: passwordController.text, phone: phoneController.text) ;
 
-                              ),
+                                      NavigteAndFinish(context , ShopLayOutScreen());
+                                    }
+                                  } ,
+                                    child: Text('Register', style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      color: Colors.white
+                                  ),),),
+                              fallback: (BuildContext context) => Center(child: CircularProgressIndicator()),
+
                             ),
                           ),
-                          SizedBox(height: 25,),
+                        ),
+                        SizedBox(height: 25,),
 
-                          Row(
-                            children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
 
-                              Text('Already have an account?' ,style: Theme.of(context).textTheme.caption,) ,
-                              SizedBox(width: 25,),
-                              Container(
-                                color: Colors.blue,
-                                child:  TextButton
-                                  (onPressed: () {
-                                    Navigator.push(context,MaterialPageRoute(builder: ( context) => LogInScreen(),),);
+                            Text('Already have an account?' ,style: Theme.of(context).textTheme.caption,) ,
+                            SizedBox(width: 25,),
+                            Container(
+                              color: Colors.blue,
+                              child:  TextButton
+                                (onPressed: () {
+                                  Navigator.push(context,MaterialPageRoute(builder: ( context) => LogInScreen(),),);
 
-                                } , child: Text('Log In', style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              } , child: Text('Log In', style: Theme.of(context).textTheme.bodyText1!.copyWith(
 
-                                    color: Colors.white
-                                ),),),
-                              ),
-
-
+                                  color: Colors.white
+                              ),),),
+                            ),
 
 
-                            ],
-                          ),
 
-                        ],
-                      ),
+
+                          ],
+                        ),
+
+                      ],
                     ),
                   ),
                 ),

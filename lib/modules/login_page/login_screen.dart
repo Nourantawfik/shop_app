@@ -160,10 +160,8 @@ class LogInScreen extends StatelessWidget {
                                       color: Colors.blue,
 
                                       child: TextButton(onPressed: () {
-                                        if (formkey.currentState!.validate())
-                                        {
+
                                           Navigator.push(context,MaterialPageRoute(builder: ( context) => RegisterScreen(),),);
-                                      }
 
                                       } , child: Text('Register', style: Theme.of(context).textTheme.bodyText1!.copyWith(
 
